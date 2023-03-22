@@ -1,0 +1,35 @@
+--create a grocery store database
+
+CREATE TABLE store (id INTEGER, item TEXT, section TEXT, price INTEGER, stock INTEGER);
+
+INSERT INTO store VALUES (1, "apples", "produce", 1.99, 33);
+INSERT INTO store VALUES (2, "bananas", "produce", 1.99, 28);
+INSERT INTO store VALUES (3, "lettuce", "produce", 0.99, 30);
+INSERT INTO store VALUES (4, "chicken", "meat", 9.99, 26);
+INSERT INTO store VALUES (5, "beef", "meat", 8.99, 40);
+INSERT INTO store VALUES (6, "turkey", "meat", 9.99, 35);
+INSERT INTO store VALUES (7, "almond milk", "dairy", 4.99, 17);
+INSERT INTO store VALUES (8, "cheese", "dairy", 2.99, 21);
+INSERT INTO store VALUES (9, "yogurt", "dairy", 2.99, 15);
+INSERT INTO store VALUES (10, "toothpaste", "hygiene", 3.99, 26);
+INSERT INTO store VALUES (11, "deodorant", "hygiene", 2.99, 4);
+INSERT INTO store VALUES (12, "body wash", "hygiene", 3.99, 7);
+INSERT INTO store VALUES (13, "dish soap", "kitchen", 1.99, 18);
+INSERT INTO store VALUES (14, "sponge", "kitchen", 3.99, 10);
+INSERT INTO store VALUES (15, "knife", "kitchen", 1.99, 11);
+
+--display database ordered by price from most to least expensive
+SELECT * 
+FROM STORE
+ORDER BY price DESC;
+
+--what is the average price of items in the hygiene section?
+SELECT AVG(price) 
+FROM STORE
+WHERE section = "hygiene";
+
+--what are the top 5 most available items?
+SELECT item, price, stock 
+FROM STORE
+ORDER BY stock DESC
+LIMIT 5
