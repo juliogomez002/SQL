@@ -1,0 +1,44 @@
+--Created a table for artists and their grammy wins
+CREATE TABLE artists (id INTEGER PRIMARY KEY AUTOINCREMENT, fullname TEXT, age INTEGER, grammys INTEGER);
+
+INSERT INTO artists (fullname, age, grammys) VALUES ("Beyonce", 41, 32);
+INSERT INTO artists (fullname, age, grammys) VALUES ("Jay Z", 53, 23);
+INSERT INTO artists (fullname, age, grammys) VALUES ("Rihanna", 35, 9);
+INSERT INTO artists (fullname, age, grammys) VALUES ("ASAP Rocky", 34, 0);
+INSERT INTO artists (fullname, age, grammys) VALUES ("Adele", 34, 16);
+INSERT INTO artists (fullname, age, grammys) VALUES ("Ariana Grande", 29, 2);
+
+--Created a table for songs and their release year
+CREATE TABLE songs (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, artist_id INTEGER, release_year INTEGER);
+
+INSERT INTO songs (name, artist_id, release_year) VALUES ("7 rings", 6, 2019);
+INSERT INTO songs (name, artist_id, release_year) VALUES ("Formation", 1, 2016);
+INSERT INTO songs (name, artist_id, release_year) VALUES ("Umbrella", 3, 2007);
+INSERT INTO songs (name, artist_id, release_year) VALUES ("Empire State of Mind", 2, 2009);
+INSERT INTO songs (name, artist_id, release_year) VALUES ("Praise the Lord", 4, 2018);
+INSERT INTO songs (name, artist_id, release_year) VALUES ("Hometown Glory", 5, 2008);
+
+--Created a table for artists in relationships
+CREATE TABLE coupled_artists (id INTEGER PRIMARY KEY AUTOINCREMENT, artist1_id INTEGER, artist2_id INTEGER);
+
+INSERT INTO coupled_artists (artist1_id, artist2_id) VALUES (1, 2);
+INSERT INTO coupled_artists (artist1_id, artist2_id) VALUES (3, 4);
+--I combined the artist with their song and displayed its release year
+SELECT fullname, name, release_year
+FROM artists
+LEFT JOIN songs
+ON artists.id = songs.artist_id;
+
+--I used multipe joins to show the artist next to their couple
+SELECT a.fullname, b.fullname
+FROM coupled_artists
+JOIN artists a
+ON coupled_artists.artist1_id = a.id
+JOIN artists b
+ON coupled_artists.artist2_id = b.id;
+
+--Displayed top 3 artists with the most grammys
+SELECT fullname, grammys
+FROM artists
+ORDER BY grammys DESC
+LIMIT 3;
