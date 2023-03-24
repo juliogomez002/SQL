@@ -235,3 +235,12 @@ SELECT name, fertility_rate,
         ELSE "low"
     END as "fertility_group"
 FROM countries;
+
+--How many countries in the high and low fertility group category?
+SELECT COUNT(*),
+    CASE
+        WHEN fertility_rate > 3.0 THEN "high"
+        ELSE "low"
+    END as "fertility_group"
+FROM countries
+GROUP BY fertility_group;
