@@ -43,4 +43,18 @@ SELECT artist_name, popularity,
         WHEN popularity > 80 THEN 'Mid'
         ELSE 'Low'
     END as popularity_category
-FROM BIT_DB.Spotifydata
+FROM BIT_DB.Spotifydata;
+
+--Used a CTE this time to create another column pased on popularity
+WITH popularity_average_CTE AS (
+SELECT s.artist_name,
+AVG(s.popularity) AS average_popularity
+FROM SpotifyData s 
+GROUP BY s.artist_name
+)
+SELECT  artist_name,
+        average_popularity,
+        'Top Star' AS tag
+FROM popularity_average_CTE
+WHERE average_popularity>=90;
+
