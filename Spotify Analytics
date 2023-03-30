@@ -45,7 +45,7 @@ SELECT artist_name, popularity,
     END as popularity_category
 FROM BIT_DB.Spotifydata;
 
---Used a CTE this time to create another column pased on popularity
+--Used a CTE this time to create another column based on popularity
 WITH popularity_average_CTE AS (
 SELECT s.artist_name,
 AVG(s.popularity) AS average_popularity
